@@ -1,3 +1,9 @@
+# Yarn v2 storybook problem
+
+As discussed at https://github.com/yarnpkg/berry/issues/592
+
+And also at https://github.com/yarnpkg/berry/issues/484
+
 ## Setup
 
 Start with these versions
@@ -204,4 +210,5 @@ yarn storybook
 # Fail
 # Error: A package is trying to access a peer dependency that should be provided by its direct ancestor but isn't
 # Required package: @babel/core (via "@babel/core")
+# Required by: @babel/plugin-proposal-object-rest-spread (via /path/to/yarnv2-storybook/.yarn/virtual/@babel-plugin-proposal-object-rest-spread-virtual-a8a2f1702d/0/cache/@babel-plugin-proposal-object-rest-spread-npm-7.7.4-433eacd5f8-1.zip/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js)
 ```
