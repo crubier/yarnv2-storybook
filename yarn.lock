@@ -35,29 +35,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.0.0, @babel/core@npm:^7.1.0, @babel/core@npm:^7.4.5":
-  version: 7.6.2
-  resolution: "@babel/core@npm:7.6.2"
-  dependencies:
-    "@babel/code-frame": "npm:^7.5.5"
-    "@babel/generator": "npm:^7.6.2"
-    "@babel/helpers": "npm:^7.6.2"
-    "@babel/parser": "npm:^7.6.2"
-    "@babel/template": "npm:^7.6.0"
-    "@babel/traverse": "npm:^7.6.2"
-    "@babel/types": "npm:^7.6.0"
-    convert-source-map: "npm:^1.1.0"
-    debug: "npm:^4.1.0"
-    json5: "npm:^2.1.0"
-    lodash: "npm:^4.17.13"
-    resolve: "npm:^1.3.2"
-    semver: "npm:^5.4.1"
-    source-map: "npm:^0.5.0"
-  checksum: cdb24091b9cae7d668531ce89eb92784b7cc52a1018f5d0167f4e60797e5489ce30d38f30ef644fa8937b17a1dfa6d7dc219bb70d5c604a43228e43170b94863
-  languageName: node
-  linkType: hard
-
-"@babel/core@npm:^7.7.4":
+"@babel/core@npm:7.7.4, @babel/core@npm:^7.0.0":
   version: 7.7.4
   resolution: "@babel/core@npm:7.7.4"
   dependencies:
@@ -76,6 +54,28 @@ __metadata:
     semver: "npm:^5.4.1"
     source-map: "npm:^0.5.0"
   checksum: 202b1f15d5dd619fa50bbaf1cb40917c51acf94a4f47f19452258a94cfabf9dbd6db74be89f674369ae86bda67becbb303c99f0c76cd3e91885e225de75041de
+  languageName: node
+  linkType: hard
+
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.4.5":
+  version: 7.6.2
+  resolution: "@babel/core@npm:7.6.2"
+  dependencies:
+    "@babel/code-frame": "npm:^7.5.5"
+    "@babel/generator": "npm:^7.6.2"
+    "@babel/helpers": "npm:^7.6.2"
+    "@babel/parser": "npm:^7.6.2"
+    "@babel/template": "npm:^7.6.0"
+    "@babel/traverse": "npm:^7.6.2"
+    "@babel/types": "npm:^7.6.0"
+    convert-source-map: "npm:^1.1.0"
+    debug: "npm:^4.1.0"
+    json5: "npm:^2.1.0"
+    lodash: "npm:^4.17.13"
+    resolve: "npm:^1.3.2"
+    semver: "npm:^5.4.1"
+    source-map: "npm:^0.5.0"
+  checksum: cdb24091b9cae7d668531ce89eb92784b7cc52a1018f5d0167f4e60797e5489ce30d38f30ef644fa8937b17a1dfa6d7dc219bb70d5c604a43228e43170b94863
   languageName: node
   linkType: hard
 
@@ -2086,7 +2086,7 @@ __metadata:
     babel-loader: ^7.0.0 || ^8.0.0
     react: "*"
     react-dom: "*"
-  checksum: 289e69334bda7bf23982360bc13167bd374c491de82973e7002211c34536e60d695b214593148c78500862d1ca1c141420643215a564cab08ec01bac0cf8c540
+  checksum: 76647b1ecafc078657d66cbb83edb149872e5f1494d4b122f8b83143e8f61ffa4b444f7624de8922b9dc6b25aff4c12c708784a53f1b0c45f8f25b60c72ef5f4
   languageName: node
   linkType: hard
 
@@ -2103,7 +2103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:^5.2.6":
+"@storybook/react@npm:5.2.6":
   version: 5.2.6
   resolution: "@storybook/react@npm:5.2.6"
   dependencies:
@@ -3511,7 +3511,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:8.0.6, babel-loader@npm:^8.0.6":
+"babel-loader@npm:8.0.6":
   version: 8.0.6
   resolution: "babel-loader@npm:8.0.6"
   dependencies:
@@ -11442,7 +11442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pnp-webpack-plugin@npm:1.5.0, pnp-webpack-plugin@npm:^1.5.0":
+"pnp-webpack-plugin@npm:1.5.0":
   version: 1.5.0
   resolution: "pnp-webpack-plugin@npm:1.5.0"
   dependencies:
@@ -16132,10 +16132,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "yarnv2-storybook@workspace:."
   dependencies:
-    "@babel/core": "npm:^7.7.4"
-    "@storybook/react": "npm:^5.2.6"
-    babel-loader: "npm:^8.0.6"
-    pnp-webpack-plugin: "npm:^1.5.0"
+    "@babel/core": "npm:7.7.4"
+    "@storybook/react": "npm:5.2.6"
+    babel-loader: "npm:8.0.6"
+    pnp-webpack-plugin: "npm:1.5.0"
     react: "npm:^16.12.0"
     react-dom: "npm:^16.12.0"
     react-scripts: "npm:3.2.0"

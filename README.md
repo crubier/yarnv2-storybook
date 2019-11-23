@@ -218,3 +218,47 @@ This does not sound logical at first, it loooks to me that `@storybook/react` is
 BUT! After checking it turns out that that `@storybook/core` is the parent of `@babel/plugin-proposal-object-rest-spread`, and this one does NOT list `@babel/core` as a peerDependency. https://github.com/storybookjs/storybook/blob/ec8ef5c144e73ce8f762df03da0ac6c2375c223b/lib/core/package.json
 
 So let's fix this...
+
+## Fix Storybook packages
+
+### Try to fix by forking storybook and installing from git
+
+Add the correct peerDependency to the storybook package: https://github.com/crubier/storybook/commit/267644152e374c56b96c5e42a5e64f3561383bb7
+
+In `package.json`, reference this modified version of storybook:
+
+```json
+{
+  "devDependencies": {
+    "@storybook/react": "https://github.com/crubier/storybook.git#commit:267644152e374c56b96c5e42a5e64f3561383bb7"
+  }
+}
+```
+
+Then install
+
+```sh
+yarn install
+# YN0000: Failed with errors in 4.36m
+#
+# ➤ YN0058: │ @storybook/react@https://github.com/crubier/storybook.git#commit:267644152e374c56b96c5e42a5e64f3561383bb7: Installing the package dependencies failed (exit code 1, logs can be found here: /var/folders/2g/totototo/T/logfile-tatata.log)
+#
+# My Gyp normally works well, but seems to be causing the problem here?
+```
+
+### Try to fix by modifying yarn cacche locally
+
+So, let's try something else... Fixing by modifying the content of the `.yarn/cache/@storybook-react-npm-5.2.6-5715394a3f-1.zip/node_modules/package.json` file and add the correct peerDependency like in the PR above.
+
+At first we get a yn0018 error, but we get the right command by following https://next.yarnpkg.com/advanced/error-codes#yn0018---cache_checksum_mismatch
+
+```sh
+YARN_CHECKSUM_BEHAVIOR=update yarn install
+yarn storybook
+# Fail
+# Error: A package is trying to access a peer dependency that should be provided by its direct ancestor but isn't
+# Required package: @babel/core (via "@babel/core")
+# Required by: @babel/plugin-proposal-object-rest-spread (via /path/to/yarnv2-storybook/.yarn/virtual/@babel-plugin-proposal-object-rest-spread-virtual-a8a2f1702d/0/cache/@babel-plugin-proposal-object-rest-spread-npm-7.7.4-433eacd5f8-1.zip/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js)
+```
+
+No change, we get the exact same error as before, weirf, am I missing something?
