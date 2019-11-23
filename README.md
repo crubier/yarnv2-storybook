@@ -212,3 +212,9 @@ yarn storybook
 # Required package: @babel/core (via "@babel/core")
 # Required by: @babel/plugin-proposal-object-rest-spread (via /path/to/yarnv2-storybook/.yarn/virtual/@babel-plugin-proposal-object-rest-spread-virtual-a8a2f1702d/0/cache/@babel-plugin-proposal-object-rest-spread-npm-7.7.4-433eacd5f8-1.zip/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js)
 ```
+
+This does not sound logical at first, it loooks to me that `@storybook/react` is the parent of `@babel/plugin-proposal-object-rest-spread`. https://github.com/storybookjs/storybook/blob/ec8ef5c144e73ce8f762df03da0ac6c2375c223b/app/react/package.json
+
+BUT! After checking it turns out that that `@storybook/core` is the parent of `@babel/plugin-proposal-object-rest-spread`, and this one does NOT list `@babel/core` as a peerDependency. https://github.com/storybookjs/storybook/blob/ec8ef5c144e73ce8f762df03da0ac6c2375c223b/lib/core/package.json
+
+So let's fix this...
