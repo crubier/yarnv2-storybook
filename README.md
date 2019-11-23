@@ -106,3 +106,102 @@ Now everything is ready. Run your storybook with:
 yarn run storybook
 # IT FAILS
 ```
+
+## Apply fixes by creating a ad-hoc a storybook preset.
+
+### Init a new storybook preset
+
+By following the guide at https://storybook.js.org/docs/presets/writing-presets/#advanced-configuration
+
+First, create a file at `.storybook/yarn-preset.js`:
+
+```javascript
+async function managerWebpack(config, options) {
+  // update config here
+  return config;
+}
+async function managerBabel(config, options) {
+  // update config here
+  return config;
+}
+async function webpack(config, options) {
+  return config;
+}
+async function babel(config, options) {
+  return config;
+}
+async function addons(entry = []) {
+  return entry;
+}
+module.exports = { managerWebpack, managerBabel, webpack, babel, addons };
+```
+
+Then, load that preset in your `.storybook/presets.js` file:
+
+```javascript
+const path = require("path");
+module.exports = [path.resolve("./.storybook/yarn-preset")];
+```
+
+### Add pnp webpack plugin to storybook via the preset
+
+Add the plugin by following https://github.com/arcanis/pnp-webpack-plugin
+
+Installation
+
+```sh
+yarn add --dev pnp-webpack-plugin
+```
+
+Then add it to the the preset at `.storybook/yarn-preset.js` in the webpack configs (for both manager and guest config)
+
+```javascript
+async function managerWebpack(config, options) {
+  // update config here
+  return {
+    ...(config || {}),
+    resolve: {
+      ...((config || {}).resolve || {}),
+      plugins: [
+        ...(((config || {}).resolve || {}).plugins || []),
+        PnpWebpackPlugin
+      ]
+    },
+    resolveLoader: {
+      ...((config || {}).resolveLoader || {}),
+      plugins: [
+        ...(((config || {}).resolveLoader || {}).plugins || []),
+        PnpWebpackPlugin.moduleLoader(module)
+      ]
+    }
+  };
+}
+async function webpack(config, options) {
+  return {
+    ...(config || {}),
+    resolve: {
+      ...((config || {}).resolve || {}),
+      plugins: [
+        ...(((config || {}).resolve || {}).plugins || []),
+        PnpWebpackPlugin
+      ]
+    },
+    resolveLoader: {
+      ...((config || {}).resolveLoader || {}),
+      plugins: [
+        ...(((config || {}).resolveLoader || {}).plugins || []),
+        PnpWebpackPlugin.moduleLoader(module)
+      ]
+    }
+  };
+}
+```
+
+Now things should work...
+
+```sh
+yarn storybook
+# Fail
+# Error: A package is trying to access a peer dependency that should be provided by its direct ancestor but isn't
+# Required package: @babel/core (via "@babel/core")
+```

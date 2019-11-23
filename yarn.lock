@@ -11442,7 +11442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pnp-webpack-plugin@npm:1.5.0":
+"pnp-webpack-plugin@npm:1.5.0, pnp-webpack-plugin@npm:^1.5.0":
   version: 1.5.0
   resolution: "pnp-webpack-plugin@npm:1.5.0"
   dependencies:
@@ -16135,6 +16135,7 @@ __metadata:
     "@babel/core": "npm:^7.7.4"
     "@storybook/react": "npm:^5.2.6"
     babel-loader: "npm:^8.0.6"
+    pnp-webpack-plugin: "npm:^1.5.0"
     react: "npm:^16.12.0"
     react-dom: "npm:^16.12.0"
     react-scripts: "npm:3.2.0"
