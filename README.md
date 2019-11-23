@@ -246,9 +246,11 @@ yarn install
 # My Gyp normally works well, but seems to be causing the problem here?
 ```
 
+This failed for obscure reasons... I opened a PR on storybook to take these changes into account anyway, and hopefully integrate them to the next release. https://github.com/storybookjs/storybook/pull/8933
+
 ### Try to fix by modifying yarn cache locally
 
-So, let's try something else... Fixing by modifying the content of the `.yarn/cache/@storybook-react-npm-5.2.6-5715394a3f-1.zip/node_modules/package.json` file and add the correct peerDependency like in the PR above.
+So, let's try something faster for now... Fixing by modifying the content of the `.yarn/cache/@storybook-react-npm-5.2.6-5715394a3f-1.zip/node_modules/package.json` file and add the correct peerDependency like in the PR above.
 
 At first we get a yn0018 error, but we get the right command by following https://next.yarnpkg.com/advanced/error-codes#yn0018---cache_checksum_mismatch
 
@@ -261,4 +263,4 @@ yarn storybook
 # Required by: @babel/plugin-proposal-object-rest-spread (via /path/to/yarnv2-storybook/.yarn/virtual/@babel-plugin-proposal-object-rest-spread-virtual-a8a2f1702d/0/cache/@babel-plugin-proposal-object-rest-spread-npm-7.7.4-433eacd5f8-1.zip/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js)
 ```
 
-No change, we get the exact same error as before, weirf, am I missing something?
+No change, we get the exact same error as before, weird, am I missing something?
