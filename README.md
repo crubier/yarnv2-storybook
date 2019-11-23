@@ -246,7 +246,7 @@ yarn install
 # My Gyp normally works well, but seems to be causing the problem here?
 ```
 
-### Try to fix by modifying yarn cacche locally
+### Try to fix by modifying yarn cache locally
 
 So, let's try something else... Fixing by modifying the content of the `.yarn/cache/@storybook-react-npm-5.2.6-5715394a3f-1.zip/node_modules/package.json` file and add the correct peerDependency like in the PR above.
 
