@@ -264,3 +264,47 @@ yarn storybook
 ```
 
 No change, we get the exact same error as before, weird, am I missing something?
+
+### Fix using @larixer method
+
+As described here https://github.com/yarnpkg/berry/issues/484#issuecomment-558092180
+
+Upgrade to latest unreleased atm Yarn v2 with PR #600, aka packageExtensions support (this step is optional, but convenient, the same effect can be achieved by editing lockfile instead)
+
+```sh
+yarn set version from sources
+```
+
+Add these lines to `.yarnrc.yml`:
+
+```yaml
+packageExtensions:
+  "@storybook/core@*":
+    peerDependencies:
+      "@babel/core": "*"
+  "corejs-upgrade-webpack-plugin@*":
+    dependencies:
+      babel-runtime: ^6.26.0
+```
+
+Run
+
+```sh
+yarn
+```
+
+Then create empty `node_modules` folder, otherwise Storybook fails to understand where to place babel cache.
+
+```sh
+mkdir node_modules
+```
+
+Then
+
+```sh
+yarn storybook
+# Error: EROFS: read-only filesystem, mkdir '/node_modules/@storybook/core/dist/public'
+# ERR!     at makeError (/Users/vincent/yarnv2-storybook/.pnp.js:25485:24)
+```
+
+Get a strange error about read only filesystem...

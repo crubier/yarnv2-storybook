@@ -1,8 +1,7 @@
 const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
-async function managerWebpack(config, options) {
-  // update config here
-  return {
+async function yarn2Config(config, options) {
+  const newConfig = {
     ...(config || {}),
     resolve: {
       ...((config || {}).resolve || {}),
@@ -19,34 +18,10 @@ async function managerWebpack(config, options) {
       ]
     }
   };
+  const jsRule = newConfig.module.rules.find(rule => rule.test.test(".js"));
+  jsRule.exclude = /node_modules/;
+
+  return newConfig;
 }
-async function managerBabel(config, options) {
-  // update config here
-  return config;
-}
-async function webpack(config, options) {
-  return {
-    ...(config || {}),
-    resolve: {
-      ...((config || {}).resolve || {}),
-      plugins: [
-        ...(((config || {}).resolve || {}).plugins || []),
-        PnpWebpackPlugin
-      ]
-    },
-    resolveLoader: {
-      ...((config || {}).resolveLoader || {}),
-      plugins: [
-        ...(((config || {}).resolveLoader || {}).plugins || []),
-        PnpWebpackPlugin.moduleLoader(module)
-      ]
-    }
-  };
-}
-async function babel(config, options) {
-  return config;
-}
-async function addons(entry = []) {
-  return entry;
-}
-module.exports = { managerWebpack, managerBabel, webpack, babel, addons };
+
+module.exports = { managerWebpack: yarn2Config, webpack: yarn2Config };
