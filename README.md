@@ -265,7 +265,7 @@ yarn storybook
 
 No change, we get the exact same error as before, weird, am I missing something?
 
-### Fix using @larixer method
+### Try to fix by using @larixer method
 
 As described here https://github.com/yarnpkg/berry/issues/484#issuecomment-558092180
 
