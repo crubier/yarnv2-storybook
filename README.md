@@ -4,6 +4,13 @@ As discussed at https://github.com/yarnpkg/berry/issues/592
 
 And also at https://github.com/yarnpkg/berry/issues/484
 
+This guide is divided in 4 steps, the 3 first steps are standard, the last one is about applying the necessary fixes.
+
+- [Setup a create react app with yarn-pnp the standard way](https://github.com/crubier/yarnv2-storybook#setup-a-create-react-app-with-yarn-pnp-the-standard-way)
+- [Install storybook the standard way](https://github.com/crubier/yarnv2-storybook#install-storybook-the-standard-way)
+- [Apply standard yarn-pnp compatibility by creating a storybook preset the standard way](https://github.com/crubier/yarnv2-storybook#apply-standard-yarn-pnp-compatibility-by-creating-a-storybook-preset-the-standard-way)
+- [Fix Storybook packages, the hard work](https://github.com/crubier/yarnv2-storybook#fix-storybook-packages-the-real-hard-work)
+
 ## Setup a create react app with yarn-pnp the standard way
 
 Start with these versions
@@ -113,7 +120,7 @@ yarn run storybook
 # IT FAILS
 ```
 
-## Apply standard yarn-pnp compatibility by creating a ad-hoc a storybook preset the standard way
+## Apply standard yarn-pnp compatibility by creating a storybook preset the standard way
 
 ### Init a new storybook preset
 
