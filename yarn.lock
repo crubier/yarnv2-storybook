@@ -15978,5 +15978,8 @@ __metadata:
     react: ^16.12.0
     react-dom: ^16.12.0
     react-scripts: 3.2.0
+  dependenciesMeta:
+    "@storybook/core":
+      unplugged: true
   languageName: unknown
   linkType: soft
