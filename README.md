@@ -4,7 +4,7 @@ As discussed at https://github.com/yarnpkg/berry/issues/592
 
 And also at https://github.com/yarnpkg/berry/issues/484
 
-## Setup
+## Setup a create react app with yarn-pnp the standard way
 
 Start with these versions
 
@@ -48,7 +48,7 @@ yarn start
 # It works as expected, nice!
 ```
 
-## Install storybook
+## Install storybook the standard way
 
 Now install storybook using their slow start guide at https://storybook.js.org/docs/guides/guide-react/#manual-setup
 
@@ -113,7 +113,7 @@ yarn run storybook
 # IT FAILS
 ```
 
-## Apply fixes by creating a ad-hoc a storybook preset.
+## Apply standard yarn-pnp compatibility by creating a ad-hoc a storybook preset the standard way
 
 ### Init a new storybook preset
 
@@ -205,7 +205,7 @@ BUT! After checking it turns out that that `@storybook/core` is the parent of `@
 
 So let's fix this...
 
-## Fix Storybook packages
+## Fix Storybook packages, the real hard work
 
 After several tries (See https://github.com/crubier/yarnv2-storybook/blob/master/tries.md), @larixer 's solution did work. It is explained there https://github.com/yarnpkg/berry/issues/484#issuecomment-558092180 . Let's apply these fixes:
 
