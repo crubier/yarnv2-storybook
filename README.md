@@ -162,9 +162,10 @@ yarn add --dev pnp-webpack-plugin
 Then add it to the the preset at `.storybook/yarn-preset.js` in the webpack configs (for both manager and guest config)
 
 ```javascript
-async function managerWebpack(config, options) {
-  // update config here
-  return {
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
+
+async function yarn2Config(config, options) {
+  const newConfig = {
     ...(config || {}),
     resolve: {
       ...((config || {}).resolve || {}),
@@ -181,26 +182,11 @@ async function managerWebpack(config, options) {
       ]
     }
   };
+
+  return newConfig;
 }
-async function webpack(config, options) {
-  return {
-    ...(config || {}),
-    resolve: {
-      ...((config || {}).resolve || {}),
-      plugins: [
-        ...(((config || {}).resolve || {}).plugins || []),
-        PnpWebpackPlugin
-      ]
-    },
-    resolveLoader: {
-      ...((config || {}).resolveLoader || {}),
-      plugins: [
-        ...(((config || {}).resolveLoader || {}).plugins || []),
-        PnpWebpackPlugin.moduleLoader(module)
-      ]
-    }
-  };
-}
+
+module.exports = { managerWebpack: yarn2Config, webpack: yarn2Config };
 ```
 
 Now things should work...
@@ -223,7 +209,7 @@ So let's fix this...
 
 After several tries (See https://github.com/crubier/yarnv2-storybook/blob/master/tries.md), @larixer 's solution did work. It is explained there https://github.com/yarnpkg/berry/issues/484#issuecomment-558092180 . Let's apply these fixes:
 
-Upgrade to latest unreleased atm Yarn v2 with PR #600, aka packageExtensions support (this step is optional, but convenient, the same effect can be achieved by editing lockfile instead)
+Upgrade to latest unreleased atm Yarn v2 with PR #600, aka packageExtensions support (this step is optional, but convenient, the same effect can be achieved by editing lockfile instead):
 
 ```sh
 yarn set version from sources
@@ -245,19 +231,26 @@ packageExtensions:
       babel-runtime: ^6.26.0
 ```
 
-To apply `packageExtensions`, run:
+To apply `packageExtensions`, install the package again:
 
 ```sh
 yarn
 ```
 
-To avoid this problem https://github.com/yarnpkg/berry/issues/484#issuecomment-558139921 we run:
+To ensure that `node_modules` will not be transpiled via Babel, add this line to the `yarn2Config` function in `.storybook/yarn-preset.js`:
+
+```javascript
+const jsRule = newConfig.module.rules.find(rule => rule.test.test(".js"));
+jsRule.exclude = /node_modules/;
+```
+
+To avoid an error (See https://github.com/yarnpkg/berry/issues/484#issuecomment-558139921), unplug `@storybook/core`:
 
 ```sh
 yarn unplug @storybook/core
 ```
 
-Then create empty `node_modules` folder, otherwise Storybook fails to understand where to place babel cache.
+To prevent Storybook from failing to understand where to place babel cache. (See https://github.com/yarnpkg/berry/issues/484#issuecomment-558060185), create an empty `node_modules` folder:
 
 ```sh
 mkdir node_modules
